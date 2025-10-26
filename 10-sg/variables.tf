@@ -6,6 +6,8 @@ variable "sg_name" {
     "catalogue", "user", "cart", "shipping", "payment",
     # frontend
     "frontend",
+    # bastion
+    "bastion",
     # frontend Load Balancer
     "frontend-LB"
   ]
