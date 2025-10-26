@@ -12,7 +12,7 @@ module "vpc" {
   #database
   database_subnets_cidrs = var.database_subnets_cidrs
   #peering vpc connection
-  is_perring_required = true
+  is_perring_required = false
   
 }
 
