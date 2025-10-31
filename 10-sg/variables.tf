@@ -9,7 +9,9 @@ variable "sg_name" {
     # bastion
     "bastion",
     # frontend Load Balancer
-    "frontend-LB"
+    "frontend_alb",
+    # backend load balancer
+    "backend_alb"
   ]
 }
 
