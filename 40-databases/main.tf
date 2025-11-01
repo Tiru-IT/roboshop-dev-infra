@@ -173,7 +173,7 @@ resource "terraform_data" "mysql" {
 
 resource "aws_route53_record" "mongodb" {
   zone_id = var.zone_id
-  name = "${common_name}-mongodb"
+  name = "mongodb-${common_name}"
   type = "A"
   ttl = 1
   records = [aws_instance.mongodb.private_ip]
@@ -181,7 +181,7 @@ resource "aws_route53_record" "mongodb" {
 
 resource "aws_route53_record" "redis" {
   zone_id = var.zone_id
-  name = "${common_name}-redis"
+  name = "redis-${common_name}"
   type = "A"
   ttl = 1
   records = [aws_instance.redis.private_ip]
@@ -190,7 +190,7 @@ resource "aws_route53_record" "redis" {
 
 resource "aws_route53_record" "rabbitmq" {
   zone_id = var.zone_id
-  name = "${common_name}-rabbitmq"
+  name = "rabbitmq-${common_name}"
   type = "A"
   ttl = 1
   records = [aws_instance.rabbitmq.private_ip]
@@ -198,7 +198,7 @@ resource "aws_route53_record" "rabbitmq" {
 
 resource "aws_route53_record" "mysql" {
   zone_id = var.zone_id
-  name = "${common_name}-mysql"
+  name = "mysql-${common_name}"
   type = "A"
   ttl = 1
   records = [aws_instance.mysql.private_ip]
