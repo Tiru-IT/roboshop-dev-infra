@@ -159,7 +159,7 @@ resource "aws_autoscaling_group" "catalogue" {
 }
 
 
-resource "aws_autoscaling_policy" "example" {
+resource "aws_autoscaling_policy" "catalogue" {
   autoscaling_group_name = aws_autoscaling_group.catalogue.name
   name                   = "${local.common_name}-catalogue"
   policy_type            = "TargetTrackingScaling"
@@ -187,5 +187,17 @@ resource "aws_lb_listener_rule" "static" {
     host_header {
       values = ["catalogur.backend-alb-${var.environment}.${var.domain_name}"]
     }
+  }
+}
+
+
+
+resource "terraform_data" "catalogue" {
+  triggers_replace = [
+    aws_instance.catalogue.id
+  ]
+  depends_on = [ aws_autoscaling_policy.catalogue ]
+  provisioner "local-exec" {
+    command = "aws ec2 terminate-instances --instance-ids ${aws_instance.catalogue.id}"
   }
 }
