@@ -173,3 +173,19 @@ resource "aws_autoscaling_policy" "example" {
   }
 
 }
+
+resource "aws_lb_listener_rule" "static" {
+  listener_arn = local.backend_alb_listener_arn
+  priority     = 10
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.catalogue.arn
+  }
+
+  condition {
+    host_header {
+      values = ["catalogur.backend-alb-${var.environment}.${var.domain_name}"]
+    }
+  }
+}
