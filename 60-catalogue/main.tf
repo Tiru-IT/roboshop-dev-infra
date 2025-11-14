@@ -143,7 +143,7 @@ resource "aws_autoscaling_group" "catalogue" {
     preferences {
       min_healthy_percentage = 50 # atleast 50% of instance is up 
     }
-    triggers = ["launch_tamplate"]
+    triggers = ["launch_template"] # launch_template is fixed name
   }
 
 
