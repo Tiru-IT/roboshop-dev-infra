@@ -88,6 +88,8 @@ resource "aws_launch_template" "catalogue" {
   instance_type = "t3.micro"
   vpc_security_group_ids = [local.catalogue_sg_id]
 
+  # when we run terraform apply agian, a new vesion will be create AMI ID
+  update_default_version =  true
   
   tag_specifications {
     resource_type = "instance" # tags attached to instance
@@ -135,6 +137,14 @@ resource "aws_autoscaling_group" "catalogue" {
   }
   vpc_zone_identifier       = local.private_subnets_ids
   target_group_arns = [aws_lb_target_group.catalogue.arn]
+
+  instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50 # atleast 50% of instance is up 
+    }
+    triggers = ["launch_tamplate"]
+  }
 
 
   dynamic "tag" {
