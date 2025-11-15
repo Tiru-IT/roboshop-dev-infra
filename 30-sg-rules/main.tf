@@ -229,7 +229,7 @@ resource "aws_security_group_rule" "backend_alb_frontend" {
   to_port           = 80
   protocol          = "tcp"
   security_group_id = local.backend_alb_sg_id
-  source_security_group_id = local.frontend_alb_sg_id
+  source_security_group_id = local.frontend_sg_id
 }
 
 resource "aws_security_group_rule" "frontend_frontend_alb" {
@@ -240,6 +240,7 @@ resource "aws_security_group_rule" "frontend_frontend_alb" {
   security_group_id = local.frontend_sg_id
   source_security_group_id = local.frontend_alb_sg_id
 }
+
 
 resource "aws_security_group_rule" "bastion_laptop" {
   type              = "ingress"
