@@ -33,7 +33,7 @@ variable "components" {
 
     }
 
-    paymemt = {
+    payment = {
         rool_priority = 50
 
     }
