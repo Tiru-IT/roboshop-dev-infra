@@ -246,7 +246,7 @@ resource "aws_security_group_rule" "frontend_bastion" {
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  security_group_id = local.frontend_alb_sg_id
+  security_group_id = local.frontend_sg_id
   source_security_group_id = local.bastion_sg_id
 }
 
